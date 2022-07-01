@@ -1,4 +1,4 @@
-<div align="center"> <a href="https://github.com/d-z-h"> <img alt="zane Logo" width="200" height="200" src="https://d-z-h.github.io/images/logo.png"> </a> <br> <br>
+<div align="center"> <a href="https://github.com/d-z-h"> <img alt="zane Logo" width="200" height="200" src="https://www.zanejs.com/resource/img/logo.png"> </a> <br> <br>
 
 [![license](https://img.shields.io/github/license/d-z-h/d-z-h.github.io.svg)](LICENSE)
 
