@@ -2,7 +2,7 @@ import { generate } from '@ant-design/colors';
 
 export const primaryColor = '#0960bd';
 
-export const darkMode = 'light';
+export const darkMode = 'dark';
 
 type Fn = (...arg: any) => any;
 

@@ -372,11 +372,11 @@
     }
 
     &-form-container {
-      padding: 16px;
+      padding: 1px;
 
       .ant-form {
         padding: 12px 10px 6px;
-        margin-bottom: 16px;
+        margin-bottom: 1px;
         background-color: @component-background;
         border-radius: 2px;
       }

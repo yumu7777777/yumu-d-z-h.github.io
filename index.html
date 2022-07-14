@@ -10,6 +10,7 @@
     />
     <title><%= title %></title>
     <link rel="icon" href="/favicon.ico" />
+    <script type="text/javascript" src="/resource/js/createjs.min.js"></script>
     <script>
       (() => {
         var htmlRoot = document.getElementById('htmlRoot');
@@ -71,19 +72,6 @@
 
         100% {
           opacity: 0;
-        }
-      }
-      @keyframes bg {
-        0% {
-          background-color: #306f99;
-        }
-
-        50% {
-          background-color: #19470f;
-        }
-
-        90% {
-          background-color: #734a10;
         }
       }
 
@@ -191,6 +179,7 @@
         font-family: chinesePixel Purista, sans-serif, arial;
         background: black;
         color: #eaf7ff;
+        font-size: 12px;
       }
 
       .wrap {
@@ -201,23 +190,13 @@
         margin-top: -40px;
       }
 
-      .bg {
-        padding: 30px 30px 30px 0;
-        background: #306f99;
-        -moz-animation: bg 1.5s linear infinite;
-        -webkit-animation: bg 1.5s linear infinite;
-        animation: bg 1.5s linear infinite;
-        -moz-box-shadow: inset 0 0 45px 30px black;
-        -webkit-box-shadow: inset 0 0 45px 30px black;
-        box-shadow: inset 0 0 45px 30px black;
-      }
-
       .loading {
         position: relative;
         text-align: right;
         text-shadow: 0 0 6px #bce4ff;
         height: 20px;
         width: 150px;
+        font-size: 16px;
       }
 
       .loading span {
@@ -272,7 +251,7 @@
         </div>
       </div>
     </div>
-    <!-- <script type="module" src="/src/main.ts"></script> -->
     <link rel="stylesheet" href="/resource/font/chinesePixel.css" type="text/css" />
+    <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

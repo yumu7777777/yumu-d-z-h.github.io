@@ -1,16 +1,28 @@
-import type { RouteMeta } from 'vue-router';
 export interface RouteItem {
-  path: string;
-  component: any;
-  meta: RouteMeta;
-  name?: string;
-  alias?: string | string[];
-  redirect?: string;
-  caseSensitive?: boolean;
-  children?: RouteItem[];
+  id: number;
+  icon: string;
+  component: string;
+  hidden: boolean;
+  internalOrExternal: boolean;
+  keepAlive: boolean;
+  menuType: number;
+  name: string;
+  parentId: number;
+  redirect: string;
+  route: boolean;
+  sortNo: boolean;
+  perms: string;
+  permsType: number;
+  status: number;
+  url: string;
+  ignoreAuth: boolean;
+  hideTab: boolean;
+  frameSrc: string;
 }
 
 /**
  * @description: Get menu return value
  */
 export type getMenuListResultModel = RouteItem[];
+
+export type MenuResultModel = RouteItem;

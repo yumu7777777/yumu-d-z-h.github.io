@@ -7,7 +7,7 @@ import { useUserStore } from './user';
 import { useAppStoreWithOut } from './app';
 import { toRaw } from 'vue';
 import { transformObjToRoute, flatMultiLevelRoutes } from '/@/router/helper/routeHelper';
-import { transformRouteToMenu } from '/@/router/helper/menuHelper';
+import { transformRouteToMenu, transformTreeMenu } from '/@/router/helper/menuHelper';
 
 import projectSetting from '/@/settings/projectSetting';
 
@@ -222,15 +222,37 @@ export const usePermissionStore = defineStore({
           let routeList: AppRouteRecordRaw[] = [];
           try {
             await this.changePermissionCode();
-            routeList = (await getMenuList()) as AppRouteRecordRaw[];
+            const menuList = (await getMenuList())
+              .filter((item) => this.permCodeList.includes(item.id as never) && item.menuType != 2)
+              .map((item) => {
+                return {
+                  id: item.id,
+                  parentId: item.parentId,
+                  name: `menu${item.id}`,
+                  path: item.url,
+                  component: item.component,
+                  redirect: item.redirect,
+                  meta: {
+                    title: item.name,
+                    icon: item.icon,
+                    ignoreKeepAlive: !item.keepAlive,
+                    frameSrc: item.frameSrc,
+                    hideTab: item.hideTab,
+                    hideMenu: item.hidden,
+                    hideBreadcrumb: item.hidden,
+                    ignoreRoute: !item.route,
+                    orderNo: item.sortNo,
+                    ignoreAuth: item.ignoreAuth,
+                  },
+                };
+              });
+            routeList = transformTreeMenu(menuList);
           } catch (error) {
             console.error(error);
           }
-
           // Dynamically introduce components
           // 动态引入组件
           routeList = transformObjToRoute(routeList);
-
           //  Background routing to menu structure
           //  后台路由到菜单结构
           const backMenuList = transformRouteToMenu(routeList);

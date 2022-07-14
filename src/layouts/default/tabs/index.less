@@ -5,6 +5,22 @@ html[data-theme='dark'] {
     .ant-tabs-tab {
       border-bottom: 1px solid @border-color-base;
     }
+
+    .ant-tabs-top {
+      & > .ant-tabs-nav {
+        &::before {
+          border-bottom: none;
+        }
+      }
+    }
+
+    &-content {
+      &__extra-quick,
+      &__extra-redo,
+      &__extra-fold {
+        border-left-color: transparent;
+      }
+    }
   }
 }
 

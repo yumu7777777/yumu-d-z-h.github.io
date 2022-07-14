@@ -104,3 +104,29 @@ export function configureDynamicParamsMenu(menu: Menu, params: RouteParams) {
   // children
   menu.children?.forEach((item) => configureDynamicParamsMenu(item, params));
 }
+
+export const transformTreeMenu = (items, id = null, link = 'parentId') => {
+  return items
+    .filter((item) => item[link] === id)
+    .map((item) => ({
+      ...item,
+      children: transformTreeMenu(items, item.id),
+    }))
+    .map((item) => ({
+      ...item,
+      children: item.children.length
+        ? item.children.sort(function (a, b) {
+            if (a.meta && b.meta) {
+              return a.meta.orderNo - b.meta.orderNo;
+            }
+            return a.sortNo - b.sortNo;
+          })
+        : undefined,
+    }))
+    .sort(function (a, b) {
+      if (a.meta && b.meta) {
+        return a.meta.orderNo - b.meta.orderNo;
+      }
+      return a.sortNo - b.sortNo;
+    });
+};
