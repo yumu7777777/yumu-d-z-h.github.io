@@ -178,7 +178,6 @@
       body {
         font-family: chinesePixel Purista, sans-serif, arial;
         background: black;
-        color: #eaf7ff;
         font-size: 12px;
       }
 
@@ -197,6 +196,7 @@
         height: 20px;
         width: 150px;
         font-size: 16px;
+        color: #eaf7ff;
       }
 
       .loading span {
@@ -251,7 +251,12 @@
         </div>
       </div>
     </div>
-    <link rel="stylesheet" href="/resource/font/chinesePixel.css" type="text/css" />
     <script type="module" src="/src/main.ts"></script>
+    <link
+      rel="stylesheet"
+      href="/resource/font/chinesePixel.css"
+      media="none"
+      onload="this.media='all'"
+    />
   </body>
 </html>
