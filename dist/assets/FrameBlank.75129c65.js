@@ -1,0 +1,1 @@
+import{a as e,b as a,o as n,c as o}from"./index.1ff435d0.js";import"./lodash.80b4ff01.js";const r=a({name:"FrameBlank"});function t(c,s,p,m,_,f){return n(),o("div")}var l=e(r,[["render",t]]);export{l as default};
