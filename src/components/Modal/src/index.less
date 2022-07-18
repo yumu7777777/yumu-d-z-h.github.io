@@ -20,7 +20,7 @@
   padding-bottom: 0;
 
   .ant-modal-body > .scrollbar {
-    padding: 14px;
+    padding: 0;
   }
 
   &-title {
@@ -38,6 +38,29 @@
     > .scrollbar > .scrollbar__bar.is-horizontal {
       display: none;
     }
+
+    canvas {
+      position: absolute;
+      display: block;
+      background-color: transparent;
+    }
+
+    .animation-container {
+      width: 620px;
+      height: 454px;
+      position: relative;
+    }
+
+    .dom-overlay-container {
+      overflow: hidden;
+      width: 620px;
+      height: 454px;
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: block;
+      z-index: 999;
+    }
   }
 
   &-large {
@@ -53,6 +76,7 @@
   }
 
   &-content {
+    background-color: transparent;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
   }
 
@@ -65,6 +89,7 @@
   &-close {
     font-weight: normal;
     outline: none;
+    z-index: 9999;
   }
 
   &-close-x {

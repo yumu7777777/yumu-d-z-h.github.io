@@ -1,6 +1,5 @@
 <template>
   <div ref="animationContainer" :class="prefixCls">
-    <canvas ref="canvas" width="505" height="420"></canvas>
     <div ref="domOverlayContainer" class="dom-overlay-container">
       <div
         class="relative top-12px w-410px left-20px text-lg font-extrabold leading-10 text-light-50/50 flex justify-between"
@@ -38,6 +37,7 @@
         <div class="text-lg text-light-50/80 mt-3 ml-2">Front-end Engineer</div>
       </div>
     </div>
+    <canvas ref="canvas" width="505" height="420"></canvas>
   </div>
 </template>
 
@@ -53,7 +53,13 @@
 
   export default defineComponent({
     name: 'Profile',
-    setup() {
+    props: {
+      waitTime: {
+        type: Number as PropType<number>,
+        default: 0,
+      },
+    },
+    setup(props) {
       const win: any = window as any;
       const { prefixCls } = useDesign('home-profile');
       const [clockCellRefs, setClockCellRefs] = useRefs();
@@ -163,16 +169,20 @@
 
       let exportRoot, stage;
       onMounted(() => {
-        exportRoot = new lib.profile();
-        stage = new AnStage(canvas.value);
-        makeResponsive(stage, lib, false, 'both', false, 1, [
-          canvas.value,
-          animationContainer.value,
-          domOverlayContainer.value,
-        ]);
-        stage.addChild(exportRoot);
-        win.createjs.Ticker.framerate = lib.properties.fps;
-        win.createjs.Ticker.addEventListener('tick', stage);
+        win.createjs.Tween.get({})
+          .wait(props.waitTime)
+          .call(() => {
+            exportRoot = new lib.profile();
+            stage = new AnStage(canvas.value);
+            makeResponsive(stage, lib, false, 'both', false, 1, [
+              canvas.value,
+              animationContainer.value,
+              domOverlayContainer.value,
+            ]);
+            stage.addChild(exportRoot);
+            win.createjs.Ticker.framerate = lib.properties.fps;
+            win.createjs.Ticker.addEventListener('tick', stage);
+          });
       });
 
       onUnmounted(() => {
@@ -205,6 +215,7 @@
   .@{prefix-cls} {
     width: 505px;
     height: 420px;
+    position: relative;
 
     canvas {
       position: absolute;
@@ -213,14 +224,14 @@
     }
 
     .dom-overlay-container {
-      pointer-events: none;
       overflow: hidden;
       width: 505px;
       height: 420px;
-      position: relative;
+      position: absolute;
       left: 0px;
       top: 0px;
       display: block;
+      z-index: 999;
     }
 
     #screen {
@@ -233,11 +244,11 @@
     .clock {
       font-size: 0;
       text-align: center;
-      margin-top: 7px;
+      margin-top: 10px;
 
       .digit {
         display: inline-block;
-        width: 8px;
+        width: 12px;
         margin: 1px;
         transform: skewX(-2deg);
         line-height: 0px;
@@ -261,7 +272,7 @@
         .cell {
           width: 1px;
           height: 1px;
-          margin: 0.5px;
+          margin: 1px;
           background-color: white;
           border-radius: 2px;
           display: inline-block;
