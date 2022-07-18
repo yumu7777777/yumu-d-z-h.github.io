@@ -174,10 +174,10 @@
     "*.vue": [
       "eslint --fix",
       "prettier --write",
-      "stylelint --fix"
+      "stylelint --fix --allow-empty-input"
     ],
     "*.{scss,less,styl,html}": [
-      "stylelint --fix",
+      "stylelint --fix --allow-empty-input",
       "prettier --write"
     ],
     "*.md": [
